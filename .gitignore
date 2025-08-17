@@ -25,3 +25,8 @@ frontend/dist/
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+
+# executor runtime
+executor/runs/
+executor/temp/

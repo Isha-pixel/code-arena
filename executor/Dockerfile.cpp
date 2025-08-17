@@ -1,9 +1,18 @@
-FROM gcc:13
+# FROM gcc:13
 
-# create unprivileged user
+# # create unprivileged user
+# RUN useradd -m coder
+# WORKDIR /app
+# USER coder
+
+# # default (we pass the command from the host)
+# CMD ["bash","-lc","echo cpp ready"]
+
+
+
+FROM gcc:13
 RUN useradd -m coder
 WORKDIR /app
 USER coder
-
-# default (we pass the command from the host)
+# No server here; executor will `docker run` this and pass a shell command.
 CMD ["bash","-lc","echo cpp ready"]

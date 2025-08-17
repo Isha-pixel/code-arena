@@ -1,0 +1,19 @@
+FROM python:3.10-slim
+
+# System deps (optional but handy)
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Python deps for the API
+RUN pip install --no-cache-dir fastapi uvicorn[standard] pydantic docker
+
+# Copy your FastAPI code
+COPY main.py .
+
+# We will talk to the host Docker daemon via the socket we mount at runtime
+ENV DOCKER_HOST=unix:///var/run/docker.sock
+
+EXPOSE 8001
+CMD ["uvicorn","main:app","--host","0.0.0.0","--port","8001"]
