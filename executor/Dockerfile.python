@@ -1,21 +1,3 @@
-# # Use an official, minimal Python runtime as a parent image
-# FROM python:3.10-slim
-
-# # Create a non-root user named 'coder' and create its home directory (-m flag)
-# # This is a critical security measure.
-# RUN useradd -m coder
-
-# # Set the working directory inside the container to /app
-# WORKDIR /app
-
-# # Switch to the non-root user for all subsequent commands
-# USER coder
-
-# # Set a default command (this is a placeholder, as our script will
-# # provide the actual command to run the user's code)
-# CMD ["python"]
-
-
 FROM python:3.10-slim
 RUN useradd -m coder
 WORKDIR /app
