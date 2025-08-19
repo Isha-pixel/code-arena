@@ -1,13 +1,3 @@
-// // src/components/RequireAuth.tsx
-// import { Navigate } from 'react-router-dom';
-// import useAuth from '../hooks/useAuth';
-
-// export default function RequireAuth({ children }: { children: JSX.Element }) {
-//   const { authed } = useAuth();
-//   return authed ? children : <Navigate to="/login" replace />;
-// }
-
-
 // components/RequireAuth.tsx
 import { Navigate, useLocation } from 'react-router-dom';
 
