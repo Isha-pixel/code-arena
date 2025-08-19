@@ -1,34 +1,3 @@
-// import { Link as RouterLink } from 'react-router-dom';
-// import { Box, HStack, Link, Button, Spacer } from '@chakra-ui/react';
-// import useAuth from '../hooks/useAuth';
-
-// export default function NavBar() {
-//   const { authed, logout } = useAuth();
-//   return (
-//     <Box px={6} py={3} borderBottom="1px" borderColor="whiteAlpha.200" bg="#0d1016" color="gray.200">
-//       <HStack spacing={4}>
-//         <Link as={RouterLink} to="/" fontWeight="bold">CodeArena</Link>
-//         <Link as={RouterLink} to="/problems">Problems</Link>
-//         <Link as={RouterLink} to="/contests">Contests</Link>
-//         <Link as={RouterLink} to="/leaderboard">Leaderboard</Link>
-//         {authed && <Link as={RouterLink} to="/submissions">Submissions</Link>}
-//         {authed && <Link as={RouterLink} to="/profile">Profile</Link>}
-//         <Spacer />
-//         {!authed ? (
-//           <Link as={RouterLink} to="/login">Login</Link>
-//         ) : (
-//           <Button size="sm" onClick={logout}>Logout</Button>
-//         )}
-//       </HStack>
-//     </Box>
-//   );
-// }
-
-
-
-
-
-
 // src/components/NavBar.tsx
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
