@@ -1,31 +1,3 @@
-// // src/hooks/useAuth.ts
-// import { useEffect, useState } from 'react';
-
-// export default function useAuth() {
-//   const [authed, setAuthed] = useState<boolean>(!!localStorage.getItem('access'));
-//   useEffect(() => {
-//     const on = () => setAuthed(!!localStorage.getItem('access'));
-//     window.addEventListener('storage', on);
-//     return () => window.removeEventListener('storage', on);
-//   }, []);
-//   return {
-//     authed,
-//     login: (access: string, refresh: string) => {
-//       localStorage.setItem('access', access);
-//       localStorage.setItem('refresh', refresh);
-//       setAuthed(true);
-//     },
-//     logout: () => {
-//       localStorage.removeItem('access');
-//       localStorage.removeItem('refresh');
-//       setAuthed(false);
-//     }
-//   };
-// }
-
-
-
-
 // src/hooks/useAuth.ts
 import { useEffect, useState } from 'react';
 import api from '../services/apiClient';
