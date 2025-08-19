@@ -1,3 +1,4 @@
+//frontend/pages/Register.tsx
 import { useState } from 'react';
 import { Box, Input, Button, Heading, VStack, useToast } from '@chakra-ui/react';
 import api from '../services/apiClient';
