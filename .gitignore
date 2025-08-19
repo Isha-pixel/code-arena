@@ -32,3 +32,5 @@ executor/runs/
 executor/temp/
 
 keys/codearena_executor-api.pem
+
+.dockerignore
