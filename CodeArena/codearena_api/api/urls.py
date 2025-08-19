@@ -1,26 +1,3 @@
-# from django.urls import path, include
-# from rest_framework.routers import DefaultRouter
-# from .views import ProfileViewSet, ProblemViewSet, SubmissionViewSet, ContestViewSet
-
-# router = DefaultRouter()
-# router.register(r'profiles',    ProfileViewSet)
-# router.register(r'problems',    ProblemViewSet, basename='problem')
-# router.register(r'submissions', SubmissionViewSet)
-# router.register(r'contests',    ContestViewSet)
-
-# urlpatterns = [
-#     path('', include(router.urls)),
-# ]
-
-# # --- TEMP DEBUG: prints all routes to the console on server start ---
-# for u in router.urls:
-#     try:
-#         name = u.name
-#     except Exception:
-#         name = None
-#     print("ROUTE:", u.pattern, "NAME:", name)
-
-
 # CodeArena/codearena_api/api/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
