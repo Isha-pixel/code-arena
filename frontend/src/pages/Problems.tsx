@@ -274,7 +274,7 @@ import {
   Link as ChakraLink,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios';import api from '../services/apiClient';
 
 // Define a type for our problem data for TypeScript
 interface Problem {
@@ -292,7 +292,8 @@ const Problems = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/problems/');
+        // const response = await axios.get('http://127.0.0.1:8000/api/problems/');
+        const response = await api.get('/problems/');
         setProblems(response.data);
       } catch (err) {
         setError('Failed to fetch problems. Please make sure the backend server is running.');

@@ -65,16 +65,33 @@
 
 
 
+# services:
+#   executor:
+#     image: codearena/executor-api
+#     container_name: executor-api
+#     ports:
+#       - "8001:8001"
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock          # allow talking to the Docker daemon
+#       - ${PWD}/runs:/runs                                  # host folder for per-run files
+#     environment:
+#       - HOST_RUNS_DIR=${PWD}/runs                          # absolute host path (string)
+#       - IN_CONTAINER_RUNS_DIR=/runs                        # where it’s mounted inside this container
+#     restart: unless-stopped
+
+
+version: "3.8"
+
 services:
   executor:
-    image: codearena/executor-api
+    image: codearena/executor-api:latest
     container_name: executor-api
     ports:
       - "8001:8001"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock          # allow talking to the Docker daemon
-      - ${PWD}/runs:/runs                                  # host folder for per-run files
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${RUNS_DIR}:/runs
     environment:
-      - HOST_RUNS_DIR=${PWD}/runs                          # absolute host path (string)
-      - IN_CONTAINER_RUNS_DIR=/runs                        # where it’s mounted inside this container
+      - HOST_RUNS_DIR=${RUNS_DIR}
+      - IN_CONTAINER_RUNS_DIR=/runs
     restart: unless-stopped

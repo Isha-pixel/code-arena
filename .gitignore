@@ -30,3 +30,5 @@ frontend/dist/
 # executor runtime
 executor/runs/
 executor/temp/
+
+keys/codearena_executor-api.pem
