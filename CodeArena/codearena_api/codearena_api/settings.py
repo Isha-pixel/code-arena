@@ -98,9 +98,6 @@ WSGI_APPLICATION = "codearena_api.wsgi.application"
 # -----------------------------------------------------------------------------
 MONGODB_URI = os.getenv(
     "MONGODB_URI",
-    # Fallback to your current URI so nothing breaks locally;
-    # replace/remove this in prod and set MONGODB_URI in the server .env.
-    "mongodb+srv://ishakumar:6LQPuPR83d7NdPUu@cluster0.wi8em1l.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 )
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "codearena_db")
 
