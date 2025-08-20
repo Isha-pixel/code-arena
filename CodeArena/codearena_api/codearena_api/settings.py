@@ -36,8 +36,7 @@ ALLOWED_HOSTS = [
 
 # If you terminate TLS at Nginx/ALB
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-proxy_set_header X-Forwarded-Proto $scheme;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
 # -----------------------------------------------------------------------------
 # Apps
 # -----------------------------------------------------------------------------
@@ -181,8 +180,6 @@ EXECUTOR_URL = os.getenv("EXECUTOR_URL", "http://127.0.0.1:8001/execute")
 # -----------------------------------------------------------------------------
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
-
-=
 if not DEBUG:
     SECURE_SSL_REDIRECT = True                      # redirect http -> https
     SESSION_COOKIE_SECURE = True
