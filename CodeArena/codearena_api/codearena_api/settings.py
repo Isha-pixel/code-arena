@@ -6,6 +6,7 @@ Django 3.2.x
 import os
 from pathlib import Path
 from datetime import timedelta
+import certifi
 
 # -----------------------------------------------------------------------------
 # Base paths
@@ -96,9 +97,8 @@ WSGI_APPLICATION = "codearena_api.wsgi.application"
 # Database (Djongo / MongoDB)
 # Move credentials to env in production!
 # -----------------------------------------------------------------------------
-MONGODB_URI = os.getenv(
-    "MONGODB_URI",
-)
+
+MONGODB_URI = os.getenv("MONGODB_URI")
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "codearena_db")
 
 DATABASES = {
@@ -106,7 +106,10 @@ DATABASES = {
         "ENGINE": "djongo",
         "NAME": MONGO_DB_NAME,
         "ENFORCE_SCHEMA": False,
-        "CLIENT": {"host": MONGODB_URI},
+        "CLIENT": {
+            "host": MONGODB_URI,
+            "tlsCAFile": certifi.where(),  # <- important for Atlas
+        },
     }
 }
 
@@ -164,8 +167,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://codearena.icu",
     "https://backend.codearena.icu",
     "https://code-arena-oj.vercel.app",
-    "https://code-arena-oj-git-main-ishas-projects-20d9a318.vercel.app/",
-    "https://code-arena-grz6to8lu-ishas-projects-20d9a318.vercel.app/",
+    "https://code-arena-oj-git-main-ishas-projects-20d9a318.vercel.app",
+    "https://code-arena-grz6to8lu-ishas-projects-20d9a318.vercel.app",
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.vercel\.app$"]
