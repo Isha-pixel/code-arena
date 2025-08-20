@@ -1,6 +1,12 @@
 //frontend/services/apiClients.ts
 import axios from 'axios';
 
+//FOR LOCAL RUNNING:
+// // dev -> '/api' (Vite proxy); prod -> VITE_API_BASE
+// const BASE = import.meta.env.VITE_API_BASE || '/api'
+// console.log('API base =', BASE) // keep temporarily to verify
+
+//or do this:
 const BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000/api';
 
 // raw client with NO auth header (used for /token and /token/refresh)
