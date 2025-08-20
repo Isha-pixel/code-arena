@@ -36,7 +36,8 @@ ALLOWED_HOSTS = [
 
 # If you terminate TLS at Nginx/ALB
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 # -----------------------------------------------------------------------------
 # Apps
 # -----------------------------------------------------------------------------
@@ -163,7 +164,12 @@ CORS_ALLOW_CREDENTIALS = False
 CSRF_TRUSTED_ORIGINS = [
     "https://codearena.icu",
     "https://backend.codearena.icu",
+    "https://code-arena-oj.vercel.app",
 ]
+
+CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.vercel\.app$"]
+
+APPEND_SLASH = True   # default in Django, but being explicit avoids drift
 
 # -----------------------------------------------------------------------------
 # Executor service (API -> local dockerized executor)
@@ -174,3 +180,13 @@ EXECUTOR_URL = os.getenv("EXECUTOR_URL", "http://127.0.0.1:8001/execute")
 # Misc env-backed keys
 # -----------------------------------------------------------------------------
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+
+
+=
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True                      # redirect http -> https
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000                  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
