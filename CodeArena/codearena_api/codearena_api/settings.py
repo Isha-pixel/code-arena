@@ -151,7 +151,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # -----------------------------------------------------------------------------
 # CORS / CSRF
 # -----------------------------------------------------------------------------
-# Frontend origins (env: CORS_ORIGINS="https://codearena.icu,https://code-arena-oj.vercel.app")
+# Frontend origins
 _default_cors = "https://codearena.icu,https://code-arena-oj.vercel.app,http://localhost:5173,http://127.0.0.1:5173"
 CORS_ALLOWED_ORIGINS = [
     o.strip() for o in os.getenv("CORS_ORIGINS", _default_cors).split(",") if o.strip()
