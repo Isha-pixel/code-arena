@@ -164,6 +164,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://codearena.icu",
     "https://backend.codearena.icu",
     "https://code-arena-oj.vercel.app",
+    "https://code-arena-oj-git-main-ishas-projects-20d9a318.vercel.app/",
+    "https://code-arena-grz6to8lu-ishas-projects-20d9a318.vercel.app/",
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.vercel\.app$"]
