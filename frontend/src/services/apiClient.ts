@@ -1,18 +1,18 @@
-//frontend/services/apiClients.ts
+// frontend/src/services/apiClients.ts
 import axios from 'axios';
 
-//FOR LOCAL RUNNING:
-// // dev -> '/api' (Vite proxy); prod -> VITE_API_BASE
-// const BASE = import.meta.env.VITE_API_BASE || '/api'
-// console.log('API base =', BASE) // keep temporarily to verify
+// DEV: use Vite proxy (/api). PROD: require VITE_API_BASE.
+const BASE = import.meta.env.DEV
+  ? '/api'
+  : (import.meta.env.VITE_API_BASE as string);
 
-//or do this:
-const BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000/api';
+if (!import.meta.env.DEV && !import.meta.env.VITE_API_BASE) {
+  // fail fast in prod builds if you forgot to set the env on Vercel
+  console.error('VITE_API_BASE is missing in production!');
+}
 
-// raw client with NO auth header (used for /token and /token/refresh)
 export const raw = axios.create({ baseURL: BASE });
 
-// main client that will auto-attach JWTs
 const api = axios.create({ baseURL: BASE });
 
 api.interceptors.request.use((config) => {
@@ -33,14 +33,12 @@ api.interceptors.response.use(
       if (!refresh) throw error;
       original._retry = true;
       try {
-        // refresh without sending the (expired) access token
         const { data } = await raw.post('/token/refresh/', { refresh });
         localStorage.setItem('access', data.access);
         original.headers = original.headers || {};
         original.headers.Authorization = `Bearer ${data.access}`;
         return api(original);
       } catch {
-        // purge tokens on refresh failure
         localStorage.removeItem('access');
         localStorage.removeItem('refresh');
         throw error;
@@ -52,7 +50,6 @@ api.interceptors.response.use(
 
 export default api;
 
-// Optional helpers
 export async function login(username: string, password: string) {
   const { data } = await raw.post('/token/', { username, password });
   localStorage.setItem('access', data.access);
